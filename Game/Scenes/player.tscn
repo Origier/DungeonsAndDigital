@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1hw3ifmfjxlq"]
+
+[ext_resource type="Texture2D" uid="uid://bdi0qavk3uola" path="res://Sprites/demigod_m.png" id="1_5enpw"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_eaonk"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_eaonk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5enpw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, -13, 11, 2, 9, 4, 3, -2, 4, 4, 8, 14, 4, 16, 0, 5, -4, 15, -8, 14, -4, 3, -3, -3, -9, 4, -12, 1)

@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://u50qrb7h4j7n"]
+[gd_scene load_steps=3 format=3 uid="uid://u50qrb7h4j7n"]
 
 [ext_resource type="PackedScene" uid="uid://1hw3ifmfjxlq" path="res://Scenes/player.tscn" id="1_fkm6i"]
+[ext_resource type="Script" path="res://Scripts/playercamera.gd" id="2_vwjar"]
 
 [node name="Test Scene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fkm6i")]
 position = Vector2(474, 298)
 speed = 20000
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_vwjar")
+player = NodePath("../Player")

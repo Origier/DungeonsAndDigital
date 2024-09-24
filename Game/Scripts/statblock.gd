@@ -5,6 +5,8 @@ extends Node
 @export var health_regen_rate : float = 5.0		# Per second
 @export var starting_stamina : float = 100
 @export var stamina_regen_rate : float = 5.0	# Per second
+@export var starting_mana : float = 100
+@export var mana_regen_rate : float = 5.0		# Per second
 @export var walking_speed := 25000
 @export var sprint_speed := 50000
 @export var dodge_roll_multiplier := 3
@@ -15,6 +17,9 @@ var _stamina_max := starting_stamina
 # Health controls
 var _health := starting_health
 var _health_max := starting_health
+# Mana controls
+var _mana := starting_mana
+var _mana_max := starting_mana
 
 # Adds the given delta to the current stamina, can accept positive and negative numbers
 func alter_stamina(delta):
@@ -48,8 +53,27 @@ func alter_health(delta):
 func get_health():
 	return _health
 
+# Adds the given delta to the current health, can accept positive and negative numbers
+func alter_mana(delta):
+	_mana += delta
+	if _mana <= 0.0:
+		_mana = 0.0
+	elif _mana >= _mana_max:
+		_mana = _mana_max
+		$ManaRegenTimer.stop()
+	# Starts regenerating if the timer isn't currently working
+	else:
+		if $ManaRegenTimer.is_stopped():
+			$ManaRegenTimer.start()
+
+func get_mana():
+	return _mana
+
 func _on_stamina_regen_timer_timeout():
 	alter_stamina(stamina_regen_rate * $StaminaRegenTimer.wait_time)
 	
 func _on_health_regen_timer_timeout():
 	alter_health(health_regen_rate * $HealthRegenTimer.wait_time)
+
+func _on_mana_regen_timer_timeout():
+	alter_mana(mana_regen_rate * $ManaRegenTimer.wait_time)

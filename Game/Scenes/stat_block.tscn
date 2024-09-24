@@ -6,8 +6,14 @@
 script = ExtResource("1_7qqgu")
 
 [node name="HealthRegenTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="StaminaRegenTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="ManaRegenTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
 [connection signal="timeout" from="StaminaRegenTimer" to="." method="_on_stamina_regen_timer_timeout"]
+[connection signal="timeout" from="ManaRegenTimer" to="." method="_on_mana_regen_timer_timeout"]

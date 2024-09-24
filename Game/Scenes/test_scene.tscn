@@ -7,7 +7,6 @@
 [node name="Test Scene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fkm6i")]
-speed = 20000
 
 [node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(2, 2)

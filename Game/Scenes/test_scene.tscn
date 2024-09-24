@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/playercamera.gd" id="2_vwjar"]
 [ext_resource type="TileSet" uid="uid://dgyc0m4h8han8" path="res://Sprites/Tilesets/grass_tiles.tres" id="3_xia15"]
 [ext_resource type="Script" path="res://Scripts/staminabar.gd" id="4_jc10j"]
-[ext_resource type="Texture2D" uid="uid://b0f6esqpjnnkm" path="res://Sprites/UI_Flat_Bar05a.png" id="4_nv1xj"]
-[ext_resource type="Texture2D" uid="uid://bi322dielo363" path="res://Sprites/UI_Flat_BarFill01f.png" id="5_3o57r"]
+[ext_resource type="Texture2D" uid="uid://b0f6esqpjnnkm" path="res://Sprites/UI Stuff/UI_Flat_Bar05a.png" id="4_nv1xj"]
+[ext_resource type="Texture2D" uid="uid://bi322dielo363" path="res://Sprites/UI Stuff/UI_Flat_BarFill01f.png" id="5_3o57r"]
 [ext_resource type="Script" path="res://Scripts/healthbar.gd" id="7_7b20v"]
 [ext_resource type="Script" path="res://Scripts/manabar.gd" id="8_f4wqk"]
 

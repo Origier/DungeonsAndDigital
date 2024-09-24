@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vahykm4asv87"
-path="res://.godot/imported/LPC_cliffs_grass.png-cb51e6192bbcc11f478caae48ec6fc84.ctex"
+uid="uid://v7bma2txiiej"
+path="res://.godot/imported/Grass Tile Sheet.png-2744c874999300dc86dde855594a33e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/LPC_cliffs_grass.png"
-dest_files=["res://.godot/imported/LPC_cliffs_grass.png-cb51e6192bbcc11f478caae48ec6fc84.ctex"]
+source_file="res://Sprites/Terrain Sheets/Grass Tile Sheet.png"
+dest_files=["res://.godot/imported/Grass Tile Sheet.png-2744c874999300dc86dde855594a33e0.ctex"]
 
 [params]
 

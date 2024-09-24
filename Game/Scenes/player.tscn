@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1hw3ifmfjxlq"]
+[gd_scene load_steps=4 format=3 uid="uid://1hw3ifmfjxlq"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0qavk3uola" path="res://Sprites/demigod_m.png" id="1_5enpw"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_eaonk"]
+[ext_resource type="PackedScene" uid="uid://dr76hdscuxgm7" path="res://Scenes/stat_block.tscn" id="3_8hov5"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_eaonk")
+
+[node name="StatBlock" parent="." instance=ExtResource("3_8hov5")]
+sprint_speed = 40000
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_5enpw")
@@ -21,5 +25,9 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="SprintStaminaUsageTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="timeout" from="DodgeRollTimer" to="." method="_on_dodge_roll_timer_timeout"]
 [connection signal="timeout" from="DodgeRollCoolDownTimer" to="." method="_on_dodge_roll_cool_down_timer_timeout"]
+[connection signal="timeout" from="SprintStaminaUsageTimer" to="." method="_on_sprint_stamina_usage_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr76hdscuxgm7"]
+
+[ext_resource type="Script" path="res://Scripts/statblock.gd" id="1_7qqgu"]
+
+[node name="StatBlock" type="Node"]
+script = ExtResource("1_7qqgu")
+
+[node name="HealthRegenTimer" type="Timer" parent="."]
+
+[node name="StaminaRegenTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
+[connection signal="timeout" from="StaminaRegenTimer" to="." method="_on_stamina_regen_timer_timeout"]

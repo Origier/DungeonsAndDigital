@@ -21,8 +21,13 @@ var _health_max := starting_health
 var _mana := starting_mana
 var _mana_max := starting_mana
 
+# Signals
+signal health_change
+signal stamina_change
+
 # Adds the given delta to the current stamina, can accept positive and negative numbers
 func alter_stamina(delta):
+	stamina_change.emit()
 	_stamina += delta
 	if _stamina <= 0.0:
 		_stamina = 0.0
@@ -36,9 +41,13 @@ func alter_stamina(delta):
 
 func get_stamina():
 	return _stamina
+	
+func get_max_stamina():
+	return _stamina_max
 
 # Adds the given delta to the current health, can accept positive and negative numbers
 func alter_health(delta):
+	health_change.emit()
 	_health += delta
 	if _health <= 0.0:
 		_health = 0.0
@@ -52,6 +61,9 @@ func alter_health(delta):
 
 func get_health():
 	return _health
+
+func get_max_health():
+	return _health_max
 
 # Adds the given delta to the current health, can accept positive and negative numbers
 func alter_mana(delta):
@@ -68,6 +80,9 @@ func alter_mana(delta):
 
 func get_mana():
 	return _mana
+
+func get_max_mana():
+	return _mana_max
 
 func _on_stamina_regen_timer_timeout():
 	alter_stamina(stamina_regen_rate * $StaminaRegenTimer.wait_time)

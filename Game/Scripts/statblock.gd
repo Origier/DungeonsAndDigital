@@ -31,8 +31,15 @@ signal death
 func alter_stamina(delta):
 	stamina_change.emit()
 	_stamina += delta
+	# While losing stamina, do not regenerate
+	if delta < 0.0:
+		$StaminaRegenTimer.stop()
+	# Ensure the regeneration is happening at 0
 	if _stamina <= 0.0:
 		_stamina = 0.0
+		if $StaminaRegenTimer.is_stopped():
+			$StaminaRegenTimer.start()
+			
 	elif _stamina >= _stamina_max:
 		_stamina = _stamina_max
 		$StaminaRegenTimer.stop()
@@ -51,9 +58,14 @@ func get_max_stamina():
 func alter_health(delta):
 	health_change.emit()
 	_health += delta
+	# While losing health, do not regenerate
+	if delta < 0.0:
+		$HealthRegenTimer.stop()
+	# Dies at zero health
 	if _health <= 0.0:
 		_health = 0.0
 		death.emit()
+		
 	elif _health >= _health_max:
 		_health = _health_max
 		$HealthRegenTimer.stop()
@@ -72,8 +84,15 @@ func get_max_health():
 func alter_mana(delta):
 	mana_change.emit()
 	_mana += delta
+	# While losing mana, do not regenerate
+	if delta < 0.0:
+		$ManaRegenTimer.stop()
+	# Ensure the regeneration is happening at 0
 	if _mana <= 0.0:
 		_mana = 0.0
+		if $ManaRegenTimer.is_stopped():
+			$ManaRegenTimer.start()
+			
 	elif _mana >= _mana_max:
 		_mana = _mana_max
 		$ManaRegenTimer.stop()

@@ -10,6 +10,10 @@ var sprinting := false
 @export var stamina_cost_sprint : float = 15.0		# Per second
 @export var stamina_cost_dodge : float = 35.0		# Per dodge
 
+# Hooking into signals and setup
+func _ready():
+	$StatBlock.death.connect(upon_death)
+
 func _process(delta):
 	# Resetting the velocity each frame
 	velocity = Vector2(0, 0)
@@ -69,3 +73,6 @@ func _on_dodge_roll_cool_down_timer_timeout():
 
 func _on_sprint_stamina_usage_timer_timeout():
 	$StatBlock.alter_stamina(-stamina_cost_sprint * $SprintStaminaUsageTimer.wait_time)
+
+func upon_death():
+	queue_free()

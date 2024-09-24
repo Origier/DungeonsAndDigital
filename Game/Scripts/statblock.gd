@@ -25,6 +25,7 @@ var _mana_max := starting_mana
 signal health_change
 signal stamina_change
 signal mana_change
+signal death
 
 # Adds the given delta to the current stamina, can accept positive and negative numbers
 func alter_stamina(delta):
@@ -52,6 +53,7 @@ func alter_health(delta):
 	_health += delta
 	if _health <= 0.0:
 		_health = 0.0
+		death.emit()
 	elif _health >= _health_max:
 		_health = _health_max
 		$HealthRegenTimer.stop()

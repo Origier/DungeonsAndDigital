@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://u50qrb7h4j7n"]
+[gd_scene load_steps=10 format=3 uid="uid://u50qrb7h4j7n"]
 
 [ext_resource type="PackedScene" uid="uid://1hw3ifmfjxlq" path="res://Scenes/player.tscn" id="1_fkm6i"]
+[ext_resource type="Script" path="res://Scripts/test_scene.gd" id="1_vo210"]
 [ext_resource type="Script" path="res://Scripts/playercamera.gd" id="2_vwjar"]
 [ext_resource type="TileSet" uid="uid://dgyc0m4h8han8" path="res://Sprites/Tilesets/grass_tiles.tres" id="3_xia15"]
 [ext_resource type="Script" path="res://Scripts/staminabar.gd" id="4_jc10j"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/manabar.gd" id="8_f4wqk"]
 
 [node name="Test Scene" type="Node2D"]
+script = ExtResource("1_vo210")
 
 [node name="Player" parent="." instance=ExtResource("1_fkm6i")]
 

@@ -8,6 +8,8 @@
 script = ExtResource("1_eaonk")
 
 [node name="StatBlock" parent="." groups=["PlayerStats"] instance=ExtResource("3_8hov5")]
+health_regen_rate = 2.0
+stamina_regen_rate = 10.0
 sprint_speed = 40000
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]

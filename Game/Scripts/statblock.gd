@@ -24,6 +24,7 @@ var _mana_max := starting_mana
 # Signals
 signal health_change
 signal stamina_change
+signal mana_change
 
 # Adds the given delta to the current stamina, can accept positive and negative numbers
 func alter_stamina(delta):
@@ -67,6 +68,7 @@ func get_max_health():
 
 # Adds the given delta to the current health, can accept positive and negative numbers
 func alter_mana(delta):
+	mana_change.emit()
 	_mana += delta
 	if _mana <= 0.0:
 		_mana = 0.0

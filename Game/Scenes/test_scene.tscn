@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://u50qrb7h4j7n"]
+[gd_scene load_steps=9 format=3 uid="uid://u50qrb7h4j7n"]
 
 [ext_resource type="PackedScene" uid="uid://1hw3ifmfjxlq" path="res://Scenes/player.tscn" id="1_fkm6i"]
 [ext_resource type="Script" path="res://Scripts/playercamera.gd" id="2_vwjar"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/staminabar.gd" id="4_jc10j"]
 [ext_resource type="Texture2D" uid="uid://b0f6esqpjnnkm" path="res://Sprites/UI_Flat_Bar05a.png" id="4_nv1xj"]
 [ext_resource type="Texture2D" uid="uid://bi322dielo363" path="res://Sprites/UI_Flat_BarFill01f.png" id="5_3o57r"]
+[ext_resource type="Script" path="res://Scripts/healthbar.gd" id="7_7b20v"]
+[ext_resource type="Script" path="res://Scripts/manabar.gd" id="8_f4wqk"]
 
 [node name="Test Scene" type="Node2D"]
 
@@ -48,7 +50,49 @@ texture_over = ExtResource("4_nv1xj")
 texture_progress = ExtResource("5_3o57r")
 texture_progress_offset = Vector2(0, 2.985)
 tint_under = Color(0, 0.580392, 0, 1)
-tint_over = Color(0, 0.580392, 0, 1)
+tint_over = Color(0, 0.454902, 0, 1)
 tint_progress = Color(0, 0.839216, 0, 1)
 script = ExtResource("4_jc10j")
+player = NodePath("../../Player")
+
+[node name="Health Bar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -69.0
+offset_right = 48.0
+offset_bottom = -29.0
+grow_vertical = 0
+scale = Vector2(2.96059, 2.34637)
+value = 100.0
+texture_under = ExtResource("4_nv1xj")
+texture_over = ExtResource("4_nv1xj")
+texture_progress = ExtResource("5_3o57r")
+texture_progress_offset = Vector2(0, 2.985)
+tint_under = Color(0, 0.580392, 0, 1)
+tint_over = Color(0.458824, 0, 0, 1)
+tint_progress = Color(1, 0, 0, 1)
+script = ExtResource("7_7b20v")
+player = NodePath("../../Player")
+
+[node name="Mana Bar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -43.0
+offset_right = 48.0
+offset_bottom = -3.0
+grow_vertical = 0
+scale = Vector2(2.96059, 2.34637)
+value = 100.0
+texture_under = ExtResource("4_nv1xj")
+texture_over = ExtResource("4_nv1xj")
+texture_progress = ExtResource("5_3o57r")
+texture_progress_offset = Vector2(0, 2.985)
+tint_under = Color(0, 0.580392, 0, 1)
+tint_over = Color(0, 0, 0.513726, 1)
+tint_progress = Color(0, 0, 1, 1)
+script = ExtResource("8_f4wqk")
 player = NodePath("../../Player")

@@ -20,6 +20,13 @@ func _process(delta):
 func _decide_direction_of_travel():
 	var x_dir = rng.randf_range(-1.0, 1.0)
 	var y_dir = rng.randf_range(-1.0, 1.0)
+	
+	# Force the random movement to occur along an axis
+	if abs(x_dir) > abs(y_dir):
+		y_dir = 0.0
+	else:
+		x_dir = 0.0
+		
 	direction_of_travel = Vector2(x_dir, y_dir).normalized()
 	moving = true
 	$RandomMovementTimer.start()

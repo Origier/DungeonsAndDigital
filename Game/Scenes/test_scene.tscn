@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://u50qrb7h4j7n"]
+[gd_scene load_steps=11 format=3 uid="uid://u50qrb7h4j7n"]
 
 [ext_resource type="PackedScene" uid="uid://1hw3ifmfjxlq" path="res://Scenes/player.tscn" id="1_fkm6i"]
 [ext_resource type="Script" path="res://Scripts/test_scene.gd" id="1_vo210"]
@@ -9,11 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://bi322dielo363" path="res://Sprites/UI Stuff/UI_Flat_BarFill01f.png" id="5_3o57r"]
 [ext_resource type="Script" path="res://Scripts/healthbar.gd" id="7_7b20v"]
 [ext_resource type="Script" path="res://Scripts/manabar.gd" id="8_f4wqk"]
+[ext_resource type="PackedScene" uid="uid://bpxdwm3dr44n0" path="res://Scenes/basic_enemy.tscn" id="10_hxq5w"]
 
 [node name="Test Scene" type="Node2D"]
 script = ExtResource("1_vo210")
 
 [node name="Player" parent="." instance=ExtResource("1_fkm6i")]
+z_index = 10
+collision_mask = 2
 
 [node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(2, 2)
@@ -98,3 +101,8 @@ tint_over = Color(0, 0, 0.513726, 1)
 tint_progress = Color(0, 0, 1, 1)
 script = ExtResource("8_f4wqk")
 player = NodePath("../../Player")
+
+[node name="BasicEnemy" parent="." instance=ExtResource("10_hxq5w")]
+position = Vector2(121, -44)
+collision_layer = 4
+collision_mask = 2

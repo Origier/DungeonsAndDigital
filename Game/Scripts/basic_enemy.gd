@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 # Exports
-@export var aggro_range := 300.0	# Pixel distance the player needs to be away from the enemy to lose aggro
+@export var aggro_range := 300.0		# Pixel distance the player needs to be away from the enemy to lose aggro
+@export var travel_wait_time_min := 1.0	# Seconds before moving
+@export var travel_wait_time_max := 2.0	# Seconds before moving
 
 # Determines randomness
 var rng = RandomNumberGenerator.new()
@@ -12,6 +14,7 @@ var moving_randomly = false
 var player_target : CharacterBody2D = null
 
 func _ready():
+	$TravelDecisionTimer.wait_time = rng.randf_range(travel_wait_time_min, travel_wait_time_max)
 	$TravelDecisionTimer.start()
 
 func _process(delta):
@@ -54,14 +57,10 @@ func _decide_direction_of_travel():
 # Updates the direction of travel based on if the monster can see walls nearby
 func _update_direction_from_sight():
 	_update_ray_cast_rotation()
-	print(direction_of_travel)
-	print($SightRayCast.rotation_degrees)
 	# If not, flip the direction of travel
 	if $SightRayCast.is_colliding():
 		_flip_direction()
 		_update_ray_cast_rotation()
-		print(direction_of_travel)
-		print($SightRayCast.rotation_degrees)
 	# If still colliding, try the other axis
 	if $SightRayCast.is_colliding():
 		if abs(direction_of_travel.x) == 1.0:

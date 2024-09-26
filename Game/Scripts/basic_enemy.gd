@@ -43,21 +43,80 @@ func _decide_direction_of_travel():
 		x_dir = 0.0
 		
 	direction_of_travel = Vector2(x_dir, y_dir).normalized()
-	moving_randomly = true
+	# Look in the direction of travel to determine if it is clear to travel
+	_update_direction_from_sight()
 	
+	moving_randomly = true
 	# Change direciton for line of sight
+	_update_line_of_sight_rotation()
+	$RandomMovementTimer.start()
+
+# Updates the direction of travel based on if the monster can see walls nearby
+func _update_direction_from_sight():
+	_update_ray_cast_rotation()
+	print(direction_of_travel)
+	print($SightRayCast.rotation_degrees)
+	# If not, flip the direction of travel
+	if $SightRayCast.is_colliding():
+		_flip_direction()
+		_update_ray_cast_rotation()
+		print(direction_of_travel)
+		print($SightRayCast.rotation_degrees)
+	# If still colliding, try the other axis
+	if $SightRayCast.is_colliding():
+		if abs(direction_of_travel.x) == 1.0:
+			direction_of_travel = Vector2(0.0, 1.0)
+		else:
+			direction_of_travel = Vector2(1.0, 0.0)
+		_update_ray_cast_rotation()
+	# Once again, if still colliding flip the direciton again
+	if $SightRayCast.is_colliding():
+		_flip_direction()
+		_update_ray_cast_rotation()
+	# Finally, if still colliding then the enemy is boxed in, should delete itself since it cant go anywhere
+	if $SightRayCast.is_colliding():
+		queue_free()
+
+# Flips the direction of travel
+func _flip_direction():
+	if direction_of_travel.x == 1.0:
+		direction_of_travel.x = -1.0
+	elif direction_of_travel.y == 1.0:
+		direction_of_travel.y = -1.0
+	elif direction_of_travel.x == -1.0:
+		direction_of_travel.x = 1.0
+	else:
+		direction_of_travel.y = 1.0
+
+func _update_line_of_sight_rotation():
 	# Going down
-	if x_dir == 0.0 and y_dir > 0.0:
+	if direction_of_travel.x == 0.0 and direction_of_travel.y > 0.0:
 		$LineOfSightCone.set_rotation(0.0)
 	# Going left
-	elif x_dir < 0.0 and y_dir == 0.0:
+	elif direction_of_travel.x < 0.0 and direction_of_travel.y == 0.0:
 		$LineOfSightCone.set_rotation(0.5 * PI)
 	# Going up
-	elif x_dir == 0.0 and y_dir < 0.0:
+	elif direction_of_travel.x == 0.0 and direction_of_travel.y < 0.0:
 		$LineOfSightCone.set_rotation(PI)
 	else:
 		$LineOfSightCone.set_rotation(1.5 * PI)
-	$RandomMovementTimer.start()
+
+# Updates the direction the ray cast is pointing based on which way the monster will travel
+func _update_ray_cast_rotation():
+	if direction_of_travel.x == 0.0 and direction_of_travel.y > 0.0:
+		$SightRayCast.set_rotation(0.0)
+		$SightRayCast.force_raycast_update()
+	# Going left
+	elif direction_of_travel.x < 0.0 and direction_of_travel.y == 0.0:
+		$SightRayCast.set_rotation(0.5 * PI)
+		$SightRayCast.force_raycast_update()
+	# Going up
+	elif direction_of_travel.x == 0.0 and direction_of_travel.y < 0.0:
+		$SightRayCast.set_rotation(PI)
+		$SightRayCast.force_raycast_update()
+	else:
+		$SightRayCast.set_rotation(1.5 * PI)
+		$SightRayCast.force_raycast_update()
 
 # Procs the decision to travel a specific direction
 func _on_travel_decision_timer_timeout():

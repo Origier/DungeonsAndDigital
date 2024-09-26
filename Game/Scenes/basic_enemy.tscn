@@ -35,6 +35,10 @@ one_shot = true
 
 [node name="LineOfSightCone" parent="." instance=ExtResource("4_3aiq7")]
 
+[node name="SightRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 111)
+collision_mask = 2
+
 [connection signal="timeout" from="TravelDecisionTimer" to="." method="_on_travel_decision_timer_timeout"]
 [connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]
 [connection signal="body_entered" from="LineOfSightCone" to="." method="_on_line_of_sight_cone_body_entered"]

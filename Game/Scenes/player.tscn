@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dr76hdscuxgm7" path="res://Scenes/stat_block.tscn" id="3_8hov5"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_eaonk")
 
 [node name="StatBlock" parent="." groups=["PlayerStats"] instance=ExtResource("3_8hov5")]

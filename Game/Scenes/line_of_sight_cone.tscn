@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b4a8k8ev11gxg"]
+
+[node name="LineOfSightCone" type="Area2D"]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 1.0625)
+scale = Vector2(1, 1.575)
+polygon = PackedVector2Array(0, 0, -80, 125, 80, 125)

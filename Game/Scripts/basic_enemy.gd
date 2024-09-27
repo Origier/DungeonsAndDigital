@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 # Exports
-@export var aggro_range := 300.0		# Pixel distance the player needs to be away from the enemy to lose aggro
-@export var travel_wait_time_min := 1.0	# Seconds before moving
-@export var travel_wait_time_max := 2.0	# Seconds before moving
+@export var aggro_range := 300.0			# Pixel distance the player needs to be away from the enemy to lose aggro
+@export var travel_wait_time_min := 1.0		# Seconds before moving
+@export var travel_wait_time_max := 2.0		# Seconds before moving
+@export var player_attack_offset := 50.0	# Pixel distance of the offset to the player before the enemy starts their attack
 
 # Determines randomness
 var rng = RandomNumberGenerator.new()
@@ -20,19 +21,25 @@ func _ready():
 func _process(delta):
 	velocity = Vector2.ZERO
 	if player_target != null:
+		# Firtly determine if the player is within aggro range still
 		var player_delta_vector = player_target.position - position
 		var distance_to_player = player_delta_vector.length()
 		# Lose aggro to player
 		if abs(distance_to_player) >= aggro_range:
 			player_target = null
 			$TravelDecisionTimer.start()
+		# When close enough to the player the monster will start its attack
+		elif abs(distance_to_player) <= player_attack_offset:
+			velocity = Vector2.ZERO
 		else:
 			direction_of_travel = (player_delta_vector).normalized()
 			velocity = $StatBlock.sprint_speed * direction_of_travel * delta
 	elif moving_randomly:
 		velocity = $StatBlock.walking_speed * direction_of_travel * delta
-		
+	# Move the monster
 	move_and_slide()
+	
+	# If there is a player insight then determine if that pl
 	
 # Decide a random direction to travel
 func _decide_direction_of_travel():

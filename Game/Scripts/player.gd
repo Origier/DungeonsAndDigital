@@ -79,4 +79,5 @@ func take_damage(damage):
 	$StatBlock.alter_health(-damage)
 
 func upon_death():
+	get_tree().call_group("Enemies", "_player_dead")
 	queue_free()

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var aggro_range := 300.0			# Pixel distance the player needs to be away from the enemy to lose aggro
 @export var travel_wait_time_min := 1.0		# Seconds before moving
 @export var travel_wait_time_max := 2.0		# Seconds before moving
-@export var player_attack_offset := 50.0	# Pixel distance of the offset to the player before the enemy starts their attack
+@export var player_attack_offset := 20.0	# Pixel distance of the offset to the player before the enemy starts their attack
 @export var attack_damage := 30				# Base amount of damage the attack will do
 
 # Determines randomness
@@ -36,6 +36,7 @@ func _process(delta):
 		# When close enough to the player the monster will start its attack
 		elif abs(distance_to_player) <= player_attack_offset:
 			velocity = Vector2.ZERO
+			_rotate_attack()
 			_perform_attack()
 		else:
 			direction_of_travel = (player_delta_vector).normalized()
@@ -65,10 +66,27 @@ func _decide_direction_of_travel():
 	_update_line_of_sight_rotation()
 	$RandomMovementTimer.start()
 
+# Rotates the attack vector towards the players position
+func _rotate_attack():
+	var player_delta_vector = player_target.position - position
+	# Focusing on the x direction
+	if abs(player_delta_vector.x) > abs(player_delta_vector.y):
+		if player_delta_vector.x > 0.0:
+			$AttackContainer.rotation = 0.0 * PI
+		else:
+			$AttackContainer.rotation = 1.0 * PI
+	# Focusing on the y direction
+	else:
+		if player_delta_vector.y > 0.0:
+			$AttackContainer.rotation = 0.5 * PI
+		else:
+			$AttackContainer.rotation = 1.5 * PI
+
+# Plays the attack animation and attempts to strike the player
 func _perform_attack():
 	$AttackContainer/AxeSprite.global_position = global_position
 	$AttackContainer/AxeSprite.visible = true
-	$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = false
+	$AttackContainer/DamageDelayTimer.start()
 	$AttackContainer/AttackAnimation.play("swing_axe")
 	performing_attack = true
 
@@ -135,6 +153,11 @@ func _update_ray_cast_rotation():
 		$SightRayCast.set_rotation(1.5 * PI)
 		$SightRayCast.force_raycast_update()
 
+# Called upon player death
+func _player_dead():
+	player_target = null
+	$TravelDecisionTimer.start()
+
 # Procs the decision to travel a specific direction
 func _on_travel_decision_timer_timeout():
 	_decide_direction_of_travel()
@@ -159,3 +182,5 @@ func _on_axe_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage(attack_damage)
 
+func _on_damage_delay_timer_timeout():
+	$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = false

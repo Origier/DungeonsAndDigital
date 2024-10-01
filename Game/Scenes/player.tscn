@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_eaonk"]
 [ext_resource type="PackedScene" uid="uid://dr76hdscuxgm7" path="res://Scenes/stat_block.tscn" id="3_8hov5"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 2
 script = ExtResource("1_eaonk")
 

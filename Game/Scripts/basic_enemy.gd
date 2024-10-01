@@ -5,14 +5,16 @@ extends CharacterBody2D
 @export var travel_wait_time_min := 1.0		# Seconds before moving
 @export var travel_wait_time_max := 2.0		# Seconds before moving
 @export var player_attack_offset := 50.0	# Pixel distance of the offset to the player before the enemy starts their attack
+@export var attack_damage := 30				# Base amount of damage the attack will do
 
 # Determines randomness
 var rng = RandomNumberGenerator.new()
 
 # Movement controls
 var direction_of_travel := Vector2.ZERO
-var moving_randomly = false
+var moving_randomly := false
 var player_target : CharacterBody2D = null
+var performing_attack := false
 
 func _ready():
 	$TravelDecisionTimer.wait_time = rng.randf_range(travel_wait_time_min, travel_wait_time_max)
@@ -20,7 +22,10 @@ func _ready():
 
 func _process(delta):
 	velocity = Vector2.ZERO
-	if player_target != null:
+	# While attacking do nothing until the animation is over
+	if performing_attack:
+		pass
+	elif player_target != null:
 		# Firtly determine if the player is within aggro range still
 		var player_delta_vector = player_target.position - position
 		var distance_to_player = player_delta_vector.length()
@@ -31,6 +36,7 @@ func _process(delta):
 		# When close enough to the player the monster will start its attack
 		elif abs(distance_to_player) <= player_attack_offset:
 			velocity = Vector2.ZERO
+			_perform_attack()
 		else:
 			direction_of_travel = (player_delta_vector).normalized()
 			velocity = $StatBlock.sprint_speed * direction_of_travel * delta
@@ -38,8 +44,6 @@ func _process(delta):
 		velocity = $StatBlock.walking_speed * direction_of_travel * delta
 	# Move the monster
 	move_and_slide()
-	
-	# If there is a player insight then determine if that pl
 	
 # Decide a random direction to travel
 func _decide_direction_of_travel():
@@ -60,6 +64,13 @@ func _decide_direction_of_travel():
 	# Change direciton for line of sight
 	_update_line_of_sight_rotation()
 	$RandomMovementTimer.start()
+
+func _perform_attack():
+	$AttackContainer/AxeSprite.global_position = global_position
+	$AttackContainer/AxeSprite.visible = true
+	$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = false
+	$AttackContainer/AttackAnimation.play("swing_axe")
+	performing_attack = true
 
 # Updates the direction of travel based on if the monster can see walls nearby
 func _update_direction_from_sight():
@@ -137,3 +148,14 @@ func _on_line_of_sight_cone_body_entered(body):
 	moving_randomly = false
 	$RandomMovementTimer.stop()
 	player_target = body
+
+func _on_attack_animation_animation_finished(anim_name):
+	if anim_name == "swing_axe":
+		performing_attack = false
+		$AttackContainer/AxeSprite.visible = false
+		$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = true
+
+func _on_axe_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		body.take_damage(attack_damage)
+

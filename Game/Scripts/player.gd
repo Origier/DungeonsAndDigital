@@ -74,5 +74,9 @@ func _on_dodge_roll_cool_down_timer_timeout():
 func _on_sprint_stamina_usage_timer_timeout():
 	$StatBlock.alter_stamina(-stamina_cost_sprint * $SprintStaminaUsageTimer.wait_time)
 
+# Public function to allow the player to take damage
+func take_damage(damage):
+	$StatBlock.alter_health(-damage)
+
 func upon_death():
 	queue_free()

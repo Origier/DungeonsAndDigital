@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var aggro_range := 300.0			# Pixel distance the player needs to be away from the enemy to lose aggro
 @export var travel_wait_time_min := 1.0		# Seconds before moving
 @export var travel_wait_time_max := 2.0		# Seconds before moving
-@export var player_attack_offset := 20.0	# Pixel distance of the offset to the player before the enemy starts their attack
-@export var attack_damage := 30				# Base amount of damage the attack will do
+@export var attack_damage := 10				# Base amount of damage the attack will do
+@export var equipped_weapon : Node2D = null
 
 # Determines randomness
 var rng = RandomNumberGenerator.new()
@@ -16,9 +16,15 @@ var moving_randomly := false
 var player_target : CharacterBody2D = null
 var performing_attack := false
 
+var player_attack_offset := 0.0	# Pixel distance of the offset to the player before the enemy starts their attack
+
 func _ready():
 	$TravelDecisionTimer.wait_time = rng.randf_range(travel_wait_time_min, travel_wait_time_max)
 	$TravelDecisionTimer.start()
+	if equipped_weapon != null:
+		equipped_weapon.attack_animation_finished.connect(_attack_finished)
+		equipped_weapon.target_struck.connect(_attack_hit_body)
+		player_attack_offset = equipped_weapon.reach
 
 func _process(delta):
 	velocity = Vector2.ZERO
@@ -70,25 +76,24 @@ func _decide_direction_of_travel():
 func _rotate_attack():
 	var player_delta_vector = player_target.position - position
 	# Focusing on the x direction
-	if abs(player_delta_vector.x) > abs(player_delta_vector.y):
-		if player_delta_vector.x > 0.0:
-			$AttackContainer.rotation = 0.0 * PI
+	if equipped_weapon != null:
+		if abs(player_delta_vector.x) > abs(player_delta_vector.y):
+			if player_delta_vector.x > 0.0:
+				equipped_weapon.rotation = 0.0 * PI
+			else:
+				equipped_weapon.rotation = 1.0 * PI
+		# Focusing on the y direction
 		else:
-			$AttackContainer.rotation = 1.0 * PI
-	# Focusing on the y direction
-	else:
-		if player_delta_vector.y > 0.0:
-			$AttackContainer.rotation = 0.5 * PI
-		else:
-			$AttackContainer.rotation = 1.5 * PI
+			if player_delta_vector.y > 0.0:
+				equipped_weapon.rotation = 0.5 * PI
+			else:
+				equipped_weapon.rotation = 1.5 * PI
 
 # Plays the attack animation and attempts to strike the player
 func _perform_attack():
-	$AttackContainer/AxeSprite.global_position = global_position
-	$AttackContainer/AxeSprite.visible = true
-	$AttackContainer/DamageDelayTimer.start()
-	$AttackContainer/AttackAnimation.play("swing_axe")
-	performing_attack = true
+	if equipped_weapon != null:
+		equipped_weapon.swing_weapon(global_position)
+		performing_attack = true
 
 # Updates the direction of travel based on if the monster can see walls nearby
 func _update_direction_from_sight():
@@ -172,15 +177,13 @@ func _on_line_of_sight_cone_body_entered(body):
 	$RandomMovementTimer.stop()
 	player_target = body
 
-func _on_attack_animation_animation_finished(anim_name):
-	if anim_name == "swing_axe":
-		performing_attack = false
-		$AttackContainer/AxeSprite.visible = false
-		$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = true
+# Called on the end of attack animations
+func _attack_finished():
+	performing_attack = false
 
-func _on_axe_area_2d_body_entered(body):
+# Called when the weapon collider hit something
+func _attack_hit_body(body):
 	if body.is_in_group("Player"):
-		body.take_damage(attack_damage)
+		body.take_damage(attack_damage + equipped_weapon.base_damage)
 
-func _on_damage_delay_timer_timeout():
-	$AttackContainer/AxeSprite/AxeArea2D/AxeCollider.disabled = false
+

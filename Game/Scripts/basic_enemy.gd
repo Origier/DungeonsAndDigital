@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var aggro_range := 300.0			# Pixel distance the player needs to be away from the enemy to lose aggro
 @export var travel_wait_time_min := 1.0		# Seconds before moving
 @export var travel_wait_time_max := 2.0		# Seconds before moving
-@export var attack_damage := 10				# Base amount of damage the attack will do
+@export var attack_damage := 1				# Base amount of damage the attack will do
 @export var equipped_weapon : Node2D = null
 
 # Determines randomness
@@ -84,19 +84,17 @@ func _decide_direction_of_travel():
 # Rotates the attack vector towards the players position
 func _rotate_attack():
 	var player_delta_vector = player_target.position - position
+	var hypotenuse = player_delta_vector.length()
+	var angle_theta = asin(player_delta_vector.y / hypotenuse)
+	
 	# Focusing on the x direction
 	if equipped_weapon != null:
-		if abs(player_delta_vector.x) > abs(player_delta_vector.y):
-			if player_delta_vector.x > 0.0:
-				equipped_weapon.rotation = 0.0 * PI
-			else:
-				equipped_weapon.rotation = 1.0 * PI
-		# Focusing on the y direction
+		if player_delta_vector.x > 0.0:
+			equipped_weapon.rotation = 0.0 * PI
+			equipped_weapon.rotate(angle_theta)
 		else:
-			if player_delta_vector.y > 0.0:
-				equipped_weapon.rotation = 0.5 * PI
-			else:
-				equipped_weapon.rotation = 1.5 * PI
+			equipped_weapon.rotation = 1.0 * PI
+			equipped_weapon.rotate(-angle_theta)
 
 # Plays the attack animation and attempts to strike the player
 func _perform_attack():

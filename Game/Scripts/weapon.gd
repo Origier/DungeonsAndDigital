@@ -1,7 +1,7 @@
 extends Node2D
 
 # Exports - Stats for the weapon
-@export var base_damage := 20
+@export var base_damage := 1
 @export var reach := 25.0 		# Distance in pixels that the weapon can extend
 @export var animation_name : String = ""
 

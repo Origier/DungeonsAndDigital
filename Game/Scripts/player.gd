@@ -6,13 +6,21 @@ var in_dodge_roll := false
 var dodge_roll_cooldown := false
 var sprinting := false
 
+var performing_attack := false
+
 # Costs for certain actions
 @export var stamina_cost_sprint : float = 15.0		# Per second
 @export var stamina_cost_dodge : float = 35.0		# Per dodge
 
+@export var attack_damage := 20
+@export var equipped_weapon : Node2D = null
+
 # Hooking into signals and setup
 func _ready():
 	$StatBlock.death.connect(upon_death)
+	if equipped_weapon != null:
+		equipped_weapon.attack_animation_finished.connect(_attack_finished)
+		equipped_weapon.target_struck.connect(_attack_hit_body)
 
 func _process(delta):
 	# Resetting the velocity each frame
@@ -45,6 +53,12 @@ func _process(delta):
 			velocity = direction * $StatBlock.walking_speed * delta
 		
 		move_and_slide()
+		
+		# Read any attack presses
+		if Input.is_action_just_pressed("Attack") and not performing_attack:
+			if equipped_weapon != null:
+				performing_attack = true
+				equipped_weapon.swing_weapon(global_position)
 	
 # Starts the dodge roll timer and initiates the control lock-out during the roll
 func start_dodge_roll(delta):
@@ -81,3 +95,12 @@ func take_damage(damage):
 func upon_death():
 	get_tree().call_group("Enemies", "_player_dead")
 	queue_free()
+	
+# Called on the end of attack animations
+func _attack_finished():
+	performing_attack = false
+
+# Called when the weapon collider hit something
+func _attack_hit_body(body):
+	if body.is_in_group("Enemies"):
+		body.take_damage(attack_damage + equipped_weapon.base_damage)

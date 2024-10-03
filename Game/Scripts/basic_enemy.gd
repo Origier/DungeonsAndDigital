@@ -21,6 +21,7 @@ var player_attack_offset := 0.0	# Pixel distance of the offset to the player bef
 func _ready():
 	$TravelDecisionTimer.wait_time = rng.randf_range(travel_wait_time_min, travel_wait_time_max)
 	$TravelDecisionTimer.start()
+	$StatBlock.death.connect(_upon_death)
 	if equipped_weapon != null:
 		equipped_weapon.attack_animation_finished.connect(_attack_finished)
 		equipped_weapon.target_struck.connect(_attack_hit_body)
@@ -51,7 +52,15 @@ func _process(delta):
 		velocity = $StatBlock.walking_speed * direction_of_travel * delta
 	# Move the monster
 	move_and_slide()
-	
+
+# Public function to allow the enemy to take damage
+func take_damage(damage):
+	$StatBlock.alter_health(-damage)
+
+# Function to handle removing the enemy
+func _upon_death():
+	queue_free()
+
 # Decide a random direction to travel
 func _decide_direction_of_travel():
 	var x_dir = rng.randf_range(-1.0, 1.0)

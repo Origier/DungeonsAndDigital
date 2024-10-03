@@ -3,6 +3,7 @@ extends Node2D
 # Exports - Stats for the weapon
 @export var base_damage := 20
 @export var reach := 25.0 		# Distance in pixels that the weapon can extend
+@export var animation_name : String = ""
 
 # Signals to inform the wielder of certain things taking place
 signal attack_animation_finished
@@ -13,7 +14,7 @@ func swing_weapon(position_in):
 	$WeaponSprite.global_position = position_in
 	$WeaponSprite.visible = true
 	$DamageDelayTimer.start()
-	$AttackAnimation.play("swing_weapon_arc")
+	$AttackAnimation.play(animation_name)
 
 # Delays the amount of time needed before the weapon deals damage
 func _on_damage_delay_timer_timeout():

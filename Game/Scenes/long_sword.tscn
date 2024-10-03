@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgxloinharrxi"]
+[gd_scene load_steps=6 format=3 uid="uid://csv8khw7ks5oo"]
 
-[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_67uiy"]
-[ext_resource type="Texture2D" uid="uid://dc4g2haas420p" path="res://Sprites/Weapons/battle_axe3.png" id="1_omil8"]
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_8hbvh"]
+[ext_resource type="Texture2D" uid="uid://goxeonjb3snl" path="res://Sprites/Weapons/long_sword1.png" id="1_crhk7"]
 
 [sub_resource type="Animation" id="Animation_ji2en"]
 resource_name = "swing_weapon_arc"
@@ -9,7 +9,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Axe/WeaponSprite:rotation")
+tracks/0/path = NodePath("LongSword/WeaponSprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,14 +19,30 @@ tracks/0/keys = {
 "values": [0.0, 0.785398, 1.5708]
 }
 
+[sub_resource type="Animation" id="Animation_6im83"]
+resource_name = "swing_sword_arc"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LongSword/WeaponSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x4vys"]
 _data = {
+"swing_sword_arc": SubResource("Animation_6im83"),
 "swing_weapon_arc": SubResource("Animation_ji2en")
 }
 
-[node name="Axe" type="Node2D"]
-script = ExtResource("1_67uiy")
-animation_name = "swing_weapon_arc"
+[node name="LongSword" type="Node2D"]
+script = ExtResource("1_8hbvh")
+animation_name = "swing_sword_arc"
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
@@ -36,20 +52,20 @@ libraries = {
 speed_scale = 3.0
 
 [node name="DamageDelayTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.001
 one_shot = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("1_omil8")
+texture = ExtResource("1_crhk7")
 offset = Vector2(15, -15)
 
 [node name="WeaponArea2D" type="Area2D" parent="WeaponSprite"]
-collision_layer = 4
+collision_mask = 4
 
 [node name="WeaponCollider" type="CollisionPolygon2D" parent="WeaponSprite/WeaponArea2D"]
 rotation = -0.00247703
-polygon = PackedVector2Array(3.00247, -0.992566, 19.0272, -10.9529, 28.0321, -12.9306, 30.0569, -22.9256, 23.0742, -29.9429, 14.0718, -28.9652, 12.047, -18.9702, 1.00743, -2.99751)
+polygon = PackedVector2Array(9.01236, -4.97769, 27.0594, -23.933, 29.0717, -28.9281, 24.0668, -26.9405, 5.02228, -8.98759)
 disabled = true
 
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_attack_animation_animation_finished"]

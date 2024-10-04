@@ -51,14 +51,28 @@ func _process(delta):
 			velocity = direction * $StatBlock.sprint_speed * delta
 		else:
 			velocity = direction * $StatBlock.walking_speed * delta
-		
 		move_and_slide()
-		
-		# Read any attack presses
-		if Input.is_action_just_pressed("Attack") and not performing_attack:
+
+# Handles input events
+func _input(event):
+	# Checking for attack inputs
+	if event is InputEventMouse and event.is_action_pressed("Attack") and not performing_attack:
+		var click_position = event.position
+		if equipped_weapon != null:
+			var screen_size_delta = get_viewport().size / 2
+			var player_click_vector = click_position - Vector2(screen_size_delta)
+			var hypotenuse = player_click_vector.length()
+			var angle_theta = asin(player_click_vector.y / hypotenuse)
+			# Focusing on the x direction
 			if equipped_weapon != null:
-				performing_attack = true
-				equipped_weapon.swing_weapon(global_position)
+				if player_click_vector.x > 0.0:
+					equipped_weapon.rotation = 0.0 * PI
+					equipped_weapon.rotate(angle_theta)
+				else:
+					equipped_weapon.rotation = 1.0 * PI
+					equipped_weapon.rotate(-angle_theta)
+			performing_attack = true
+			equipped_weapon.swing_weapon(global_position)
 	
 # Starts the dodge roll timer and initiates the control lock-out during the roll
 func start_dodge_roll(delta):

@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_8hbvh"]
 [ext_resource type="Texture2D" uid="uid://goxeonjb3snl" path="res://Sprites/Weapons/long_sword1.png" id="1_crhk7"]
 
+[sub_resource type="Animation" id="Animation_6im83"]
+resource_name = "swing_sword_arc"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LongSword/WeaponSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708]
+}
+
 [sub_resource type="Animation" id="Animation_ji2en"]
 resource_name = "swing_weapon_arc"
 length = 2.0
@@ -14,21 +29,6 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(1, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.785398, 1.5708]
-}
-
-[sub_resource type="Animation" id="Animation_6im83"]
-resource_name = "swing_sword_arc"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LongSword/WeaponSprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.785398, 1.5708]

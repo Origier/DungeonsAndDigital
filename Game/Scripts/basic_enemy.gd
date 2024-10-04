@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var aggro_range := 300.0			# Pixel distance the player needs to be away from the enemy to lose aggro
 @export var travel_wait_time_min := 1.0		# Seconds before moving
 @export var travel_wait_time_max := 2.0		# Seconds before moving
-@export var attack_damage := 1				# Base amount of damage the attack will do
+@export var attack_damage := 10				# Base amount of damage the attack will do
 @export var equipped_weapon : Node2D = null
 
 # Determines randomness

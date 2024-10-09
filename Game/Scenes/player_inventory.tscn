@@ -1,0 +1,390 @@
+[gd_scene load_steps=8 format=3 uid="uid://buqyvd3sbobqq"]
+
+[ext_resource type="Texture2D" uid="uid://04vjgiufe5cg" path="res://Sprites/UI Stuff/UI_Flat_Frame03a.png" id="1_3nq1d"]
+[ext_resource type="Texture2D" uid="uid://cp01yc6rqjnkl" path="res://Sprites/UI Stuff/UI_Flat_Select02a_4.png" id="2_7apd2"]
+[ext_resource type="Texture2D" uid="uid://ci6baj6etxv61" path="res://Sprites/UI Stuff/UI_Flat_Frame01a.png" id="2_n0kt7"]
+[ext_resource type="Texture2D" uid="uid://d068sebcpfpvt" path="res://Sprites/UI Stuff/UI_Flat_Select01a_1.png" id="3_e6qum"]
+[ext_resource type="Texture2D" uid="uid://dhrw5dh304vmf" path="res://Sprites/UI Stuff/UI_Flat_FrameSlot01b.png" id="5_u0kux"]
+[ext_resource type="Texture2D" uid="uid://bxt3ars0nvrlg" path="res://Sprites/UI Stuff/InventoryButtonHover.png" id="6_clb1s"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_odius"]
+load_path = "res://.godot/imported/InventoryButtonHover.png-1bd074cd2cf947d6a4a1d85082f2e8b9.ctex"
+
+[node name="PlayerInventory" type="CanvasLayer"]
+
+[node name="Panel" type="NinePatchRect" parent="."]
+offset_left = 415.0
+offset_top = 27.0
+offset_right = 853.0
+offset_bottom = 530.0
+texture = ExtResource("1_3nq1d")
+
+[node name="Inventory Lower Backdrop" type="TextureRect" parent="Panel"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+offset_left = 15.0
+offset_top = 268.0
+offset_right = 422.0
+offset_bottom = 474.0
+texture = ExtResource("2_n0kt7")
+
+[node name="Inventory VBOX" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 281.0
+offset_right = 414.0
+offset_bottom = 459.0
+
+[node name="Inventory Row HBOX" type="HBoxContainer" parent="Panel/Inventory VBOX"]
+z_index = 2
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton11" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="Inventory Row HBOX2" type="HBoxContainer" parent="Panel/Inventory VBOX"]
+z_index = 2
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton11" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX2"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="Inventory Row HBOX3" type="HBoxContainer" parent="Panel/Inventory VBOX"]
+z_index = 2
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton11" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX3"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="Inventory Row HBOX4" type="HBoxContainer" parent="Panel/Inventory VBOX"]
+z_index = 2
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton11" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX4"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="Inventory Row HBOX5" type="HBoxContainer" parent="Panel/Inventory VBOX"]
+z_index = 2
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="TextureButton11" type="TextureButton" parent="Panel/Inventory VBOX/Inventory Row HBOX5"]
+layout_mode = 2
+texture_normal = ExtResource("3_e6qum")
+texture_hover = ExtResource("2_7apd2")
+
+[node name="Ring1 Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 216.0
+offset_right = 348.0
+offset_bottom = 248.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = SubResource("CompressedTexture2D_odius")
+
+[node name="Ring2 Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 216.0
+offset_right = 119.0
+offset_bottom = 248.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = SubResource("CompressedTexture2D_odius")
+
+[node name="Main Arm Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 78.0
+offset_right = 140.0
+offset_bottom = 191.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = SubResource("CompressedTexture2D_odius")
+stretch_mode = 0
+
+[node name="Side Arm Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 78.0
+offset_right = 370.0
+offset_bottom = 191.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = ExtResource("6_clb1s")
+stretch_mode = 0
+
+[node name="Body Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 99.0
+offset_right = 266.0
+offset_bottom = 226.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = ExtResource("6_clb1s")
+stretch_mode = 0
+
+[node name="Head Backdrop" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 30.0
+offset_right = 238.0
+offset_bottom = 71.0
+texture_normal = ExtResource("5_u0kux")
+texture_hover = ExtResource("6_clb1s")
+stretch_mode = 0

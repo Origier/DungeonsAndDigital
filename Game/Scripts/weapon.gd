@@ -5,6 +5,11 @@ extends Node2D
 @export var reach := 25.0 		# Distance in pixels that the weapon can extend
 @export var animation_name : String = ""
 
+# Icons to load for the weapons inventory icons
+@export var full_inv_icon_path : String = ""
+# Place these in top to bottom order
+@export var inv_icon_pieces : Array[String]
+
 # Signals to inform the wielder of certain things taking place
 signal attack_animation_finished
 signal target_struck

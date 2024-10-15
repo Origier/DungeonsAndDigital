@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxf1jybudgtul"
-path="res://.godot/imported/Sword Inventory.png-e51640994e048dea4259769616f4cb95.ctex"
+uid="uid://brkqisifctpnb"
+path="res://.godot/imported/Sword Inventory Bottom.png-7b6b91259bca41ba02774430b26c4b5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Weapons/Sword Inventory.png"
-dest_files=["res://.godot/imported/Sword Inventory.png-e51640994e048dea4259769616f4cb95.ctex"]
+source_file="res://Sprites/Weapons/Sword Inventory Icons/Sword Inventory Bottom.png"
+dest_files=["res://.godot/imported/Sword Inventory Bottom.png-7b6b91259bca41ba02774430b26c4b5c.ctex"]
 
 [params]
 
